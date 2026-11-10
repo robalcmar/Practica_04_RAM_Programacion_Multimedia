@@ -5,6 +5,8 @@ import 'package:paisesgui/domain/entities/pais.dart';
 class PaisesScreen extends StatelessWidget {
   PaisesScreen();
 
+  final String nombreContinente = "Europa"; // Nombre del continente para filtrar los países
+
   // Referencia al repositorio, de donde obtendremos la lista de continentes
   final PaisesRepository _repository = PaisesRepository();
 
@@ -15,7 +17,7 @@ class PaisesScreen extends StatelessWidget {
       body: Center(
           // Proporciona a _creaLlistaPaises la lista de paises de Europa
           child:
-              _creaListaPaises(_repository.getPaises())), 
+              _creaListaPaises(_repository.getPaises(nombreContinente))), 
     );
   }
 
@@ -57,7 +59,11 @@ class PaisCard extends StatelessWidget {
     // que muestre la imagen (obtenida de Internet a partir de la url)
     // y el nombre del país.
 
-    return Card(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Primera Pantalla'),
+      ),
+      body: Card(
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
@@ -79,6 +85,7 @@ class PaisCard extends StatelessWidget {
         ),
         ],
       ),
+    )
     );
 
 
